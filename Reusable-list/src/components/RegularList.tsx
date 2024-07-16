@@ -1,21 +1,17 @@
 interface RegularListProps<T> {
   items: T[]
   sourceName: string
-  ItemComponent: React.FC<{ [key: number]: T }>
+  ItemComponent: React.FC<any>
 }
 
-const RegularList = <T,>({
-  items,
-  sourceName,
-  ItemComponent
-}: RegularListProps<T>) => {
+const RegularList = <T,>({ items, sourceName, ItemComponent }: RegularListProps<T>) => {
   return (
-    <>
-      {items.map((item, index) => (
+    <div>
+      {items.map((item: T, index: number) => (
         <ItemComponent key={index} {...{ [sourceName]: item }} />
       ))}
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default RegularList
+export default RegularList;
